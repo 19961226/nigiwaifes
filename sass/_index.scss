@@ -1,0 +1,2276 @@
+@use "sass:map";
+@use "common" as *;
+
+// ==========================================
+// ヘッダー
+// ==========================================
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: $header-h-sp;
+  background-color: rgba($text-color2, 0.96);
+  border-bottom: 0.3rem solid $text-color1;
+
+  @include mq(pc) {
+    height: $header-h-pc;
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 128rem;
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+
+  @include mq(pc) {
+    gap: 2.4rem;
+    padding-inline: 2.4rem;
+  }
+}
+
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-family: $font-round;
+  font-weight: 900;
+  line-height: 1.05;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      transform: rotate(-3deg) scale(1.04);
+    }
+  }
+}
+
+.header__logo-sub {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+
+  @include mq(pc) {
+    font-size: 1.3rem;
+  }
+}
+
+.header__logo-main {
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+
+  @include mq(pc) {
+    font-size: 2.6rem;
+  }
+}
+
+// ナビ（SPはドロワー）
+.header__nav {
+  position: fixed;
+  top: $header-h-sp;
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - #{$header-h-sp});
+  padding: 3.2rem 2.4rem 4rem;
+  overflow-y: auto;
+  background-color: $main-color;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.6s cubic-bezier(0.68, -0.25, 0.27, 1.25),
+    visibility 0.6s;
+
+  &.is-checked {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  @include mq(pc) {
+    position: static;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+}
+
+.header__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  @include mq(pc) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  @include mq(pcl) {
+    gap: 2.8rem;
+  }
+}
+
+.header__link {
+  display: block;
+  padding: 1.2rem 0.8rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 800;
+  border-bottom: 0.25rem dashed rgba($text-color1, 0.35);
+
+  @include mq(pc) {
+    position: relative;
+    padding: 0.4rem 0;
+    font-size: 1.4rem;
+    border-bottom: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -0.4rem;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background-color: $accent-color;
+      opacity: 0;
+      transform: translate(-50%, 0.8rem) scale(0);
+      transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.3s;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: $accent-color;
+
+        &::after {
+          opacity: 1;
+          transform: translate(-50%, 0) scale(1);
+        }
+      }
+    }
+  }
+}
+
+.header__drawer-deco {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: 4rem;
+
+  @include mq(pc) {
+    display: none;
+  }
+}
+
+.header__drawer-balloon {
+  width: 4rem;
+  height: 8.4rem;
+
+  &:nth-child(2) {
+    margin-top: 2rem;
+  }
+}
+
+.header__btn {
+  margin-left: auto;
+  flex-shrink: 0;
+
+  @include mq(pc) {
+    margin-left: 0;
+  }
+}
+
+.header__hamburger {
+  position: relative;
+  flex-shrink: 0;
+  width: 4.4rem;
+  height: 4.4rem;
+  background-color: $main-color;
+  border: 0.25rem solid $text-color1;
+  border-radius: 1.2rem;
+
+  @include mq(pc) {
+    display: none;
+  }
+
+  &.is-checked {
+    .header__hamburger-line:nth-child(1) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .header__hamburger-line:nth-child(2) {
+      opacity: 0;
+      transform: translate(-50%, -50%) scaleX(0);
+    }
+
+    .header__hamburger-line:nth-child(3) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+.header__hamburger-line {
+  position: absolute;
+  left: 50%;
+  width: 2rem;
+  height: 0.3rem;
+  border-radius: 0.3rem;
+  background-color: $text-color1;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    top 0.3s,
+    opacity 0.3s;
+
+  &:nth-child(1) {
+    top: 30%;
+  }
+
+  &:nth-child(2) {
+    top: 50%;
+  }
+
+  &:nth-child(3) {
+    top: 70%;
+  }
+}
+
+// ==========================================
+// ファーストビュー
+// ==========================================
+.fv {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: max(100svh, 68rem);
+  padding: calc(#{$header-h-sp} + 5.6rem) 0 7.2rem;
+  overflow: hidden;
+  background-color: $main-color;
+  scroll-snap-align: start;
+
+  @include mq(pc) {
+    min-height: max(100svh, 76rem);
+    padding: calc(#{$header-h-pc} + 6.4rem) 0 8rem;
+  }
+}
+
+// 放射状の背景
+.fv__rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300vmax;
+  height: 300vmax;
+  margin: -150vmax 0 0 -150vmax;
+  background: repeating-conic-gradient(from 0deg, $main-color 0deg 7.5deg, #ffe685 7.5deg 15deg);
+}
+
+.fv__garland {
+  position: absolute;
+  top: $header-h-sp;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+
+  @include mq(pc) {
+    top: $header-h-pc;
+  }
+}
+
+.fv__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 124rem;
+  padding: 0 1.6rem 10rem;
+
+  @include mq(tb) {
+    padding: 0 3.2rem 6rem;
+  }
+
+  @include mq(pc) {
+    padding: 2rem 4rem;
+  }
+}
+
+// モチーフ
+.fv__motifs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fv__motif {
+  position: absolute;
+  overflow: visible;
+
+  &--balloon1,
+  &--balloon2,
+  &--balloon3,
+  &--balloon4 {
+    width: 3.6rem;
+    height: 7.6rem;
+  }
+
+  &--balloon1 {
+    top: -3.6rem;
+    left: 0.4rem;
+  }
+
+  &--balloon2 {
+    top: -2.4rem;
+    left: 16%;
+    width: 3rem;
+    height: 6.3rem;
+  }
+
+  &--balloon3 {
+    display: none;
+    top: 46%;
+    left: 1%;
+  }
+
+  &--balloon4 {
+    display: none;
+    top: 38%;
+    right: 2%;
+  }
+
+  &--tree1,
+  &--tree2 {
+    width: 4.4rem;
+    height: 8rem;
+  }
+
+  &--tree1 {
+    bottom: 0.4rem;
+    right: 3%;
+  }
+
+  &--tree2 {
+    display: none;
+    top: 16%;
+    right: 13%;
+  }
+
+  &--house1,
+  &--house2 {
+    width: 7.6rem;
+    height: 7rem;
+  }
+
+  &--house1 {
+    bottom: 0.4rem;
+    left: 3%;
+  }
+
+  &--house2 {
+    display: none;
+    bottom: 16%;
+    right: 5%;
+  }
+
+  &--bicycle {
+    bottom: 0.4rem;
+    left: 30%;
+    width: 8rem;
+    height: 5.2rem;
+  }
+
+  &--star1,
+  &--star2 {
+    width: 2.8rem;
+    height: 2.8rem;
+    color: $text-color2;
+  }
+
+  &--star1 {
+    top: -1rem;
+    left: 26%;
+  }
+
+  &--star2 {
+    display: none;
+    bottom: 34%;
+    right: 20%;
+  }
+
+  &--food {
+    bottom: 1rem;
+    right: 22%;
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  @include mq(tb) {
+    &--balloon3,
+    &--balloon4,
+    &--tree2,
+    &--house2,
+    &--star2 {
+      display: block;
+    }
+
+    &--balloon1 {
+      top: 2%;
+      left: 3%;
+    }
+
+    &--balloon2 {
+      top: 6%;
+      left: auto;
+      right: 4%;
+    }
+
+    &--tree1 {
+      bottom: 6%;
+      right: auto;
+      left: 10%;
+    }
+
+    &--house1 {
+      bottom: auto;
+      top: 26%;
+      left: 2%;
+    }
+
+    &--bicycle {
+      left: 2%;
+      bottom: 0;
+    }
+
+    &--food {
+      right: 16%;
+      bottom: 1%;
+    }
+
+    &--star1 {
+      top: 10%;
+      left: 18%;
+    }
+  }
+
+  @include mq(pc) {
+    &--balloon1,
+    &--balloon3,
+    &--balloon4 {
+      width: 5.2rem;
+      height: 11rem;
+    }
+
+    &--balloon2 {
+      width: 4.4rem;
+      height: 9.2rem;
+    }
+
+    &--tree1,
+    &--tree2 {
+      width: 7.2rem;
+      height: 13.2rem;
+    }
+
+    &--house1,
+    &--house2 {
+      width: 13rem;
+      height: 12rem;
+    }
+
+    &--bicycle {
+      width: 14rem;
+      height: 9rem;
+    }
+
+    &--food {
+      width: 7.2rem;
+      height: 7.2rem;
+    }
+
+    &--star1,
+    &--star2 {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+}
+
+.fv__body {
+  position: relative;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: 4rem 1.2rem 3.6rem;
+  text-align: center;
+
+  @include mq(tb) {
+    padding: 5.6rem 4rem 4.8rem;
+  }
+}
+
+// 中央の白い雲形
+.fv__cloud {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: $text-color2;
+  border-radius: 46% 54% 42% 58% / 38% 44% 56% 62%;
+  box-shadow: 0 1rem 0 rgba($text-color1, 0.08);
+}
+
+.fv__title {
+  font-family: $font-round;
+  font-size: min(4.2rem, 10.6vw);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+
+  @include mq(tb) {
+    font-size: 6.4rem;
+  }
+
+  @include mq(pc) {
+    font-size: 8.4rem;
+  }
+}
+
+.fv__title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.fv__title-char {
+  display: inline-block;
+  text-shadow: 0 0.4rem 0 rgba($text-color1, 0.12);
+
+  @each $name, $color in ("red": $color-red, "orange": $color-orange, "green": $color-green, "blue": $color-blue, "sky": #1c9fd6) {
+    &--#{$name} {
+      color: $color;
+    }
+  }
+}
+
+// キャッチコピー（リボン）
+.fv__catch {
+  margin-top: 1.6rem;
+}
+
+.fv__catch-text {
+  display: inline-block;
+  padding: 0.7rem 2.8rem;
+  font-family: $font-round;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: $text-color2;
+  background-color: $color-blue;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 1.4rem) 50%, 100% 100%, 0 100%, 1.4rem 50%);
+
+  @include mq(tb) {
+    padding: 0.9rem 4rem;
+    font-size: 2rem;
+  }
+}
+
+.fv__date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 2rem;
+  margin-top: 2rem;
+}
+
+.fv__day {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: $font-round;
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+
+  @include mq(tb) {
+    font-size: 5rem;
+  }
+}
+
+.fv__week {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.6rem;
+  color: $text-color2;
+  border-radius: 50%;
+
+  @include mq(tb) {
+    width: 4.2rem;
+    height: 4.2rem;
+    font-size: 2.2rem;
+  }
+
+  &--sat {
+    background-color: $color-blue;
+  }
+
+  &--sun {
+    background-color: $color-red;
+  }
+}
+
+.fv__time {
+  margin-top: 0.4rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.4;
+
+  @include mq(tb) {
+    font-size: 2.6rem;
+  }
+}
+
+.fv__place {
+  font-family: $font-round;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.4;
+
+  @include mq(tb) {
+    font-size: 2.4rem;
+  }
+}
+
+.fv__place-pref {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  color: $text-color3;
+
+  @include mq(tb) {
+    font-size: 1.5rem;
+  }
+}
+
+// 入場無料バッジ
+.fv__badge {
+  position: absolute;
+  top: -5.6rem;
+  right: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 7.6rem;
+  height: 7.6rem;
+  font-family: $font-round;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: $text-color2;
+  background-color: $color-orange;
+  border: 0.3rem solid $text-color2;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.3rem $text-color1, 0 0.5rem 0 0.3rem $text-color1;
+
+  @include mq(tb) {
+    top: auto;
+    right: 1.6rem;
+    bottom: 12rem;
+    width: 11rem;
+    height: 11rem;
+    font-size: 2.4rem;
+  }
+}
+
+.fv__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem 2rem;
+  margin-top: 2.4rem;
+}
+
+.fv__scroll {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: $font-en;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  transform: translateX(-50%);
+
+  &::after {
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    border-right: 0.3rem solid $text-color1;
+    border-bottom: 0.3rem solid $text-color1;
+    transform: rotate(45deg);
+  }
+}
+
+// ==========================================
+// イベント概要
+// ==========================================
+.about {
+  background-color: #fffdf5;
+}
+
+.about__wrap {
+  display: grid;
+  gap: 4rem;
+
+  @include mq(pc) {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 6.4rem;
+  }
+}
+
+.about__text {
+  position: relative;
+
+  p + p {
+    margin-top: 1.6rem;
+  }
+
+  p:first-child {
+    font-family: $font-round;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.6;
+    color: $color-red;
+
+    @include mq(tb) {
+      font-size: 2.4rem;
+    }
+  }
+}
+
+.about__deco {
+  position: absolute;
+  right: 0;
+  bottom: -6rem;
+  width: 3.6rem;
+  height: 7.6rem;
+
+  @include mq(pc) {
+    right: -2rem;
+    bottom: -8rem;
+  }
+}
+
+.about__table-wrap {
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.4rem;
+  overflow: hidden;
+  background-color: $text-color2;
+  box-shadow: 0.8rem 0.8rem 0 $main-color;
+}
+
+.about__table {
+  width: 100%;
+
+  tr + tr {
+    th,
+    td {
+      border-top: 0.2rem dashed rgba($text-color1, 0.25);
+    }
+  }
+
+  th {
+    width: 30%;
+    padding: 1.4rem 1rem;
+    font-family: $font-round;
+    font-weight: 800;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $main-color;
+  }
+
+  td {
+    padding: 1.4rem 1.6rem;
+    font-weight: 700;
+
+    @include mq(tb) {
+      padding-inline: 2.4rem;
+    }
+  }
+}
+
+.about__free {
+  margin-right: 0.8rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 900;
+  color: $color-red;
+}
+
+.about__note {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: $text-color3;
+}
+
+// ==========================================
+// 魅力
+// ==========================================
+.point {
+  background-color: $main-color;
+}
+
+.point__list {
+  display: grid;
+  gap: 5.6rem;
+  padding-top: 2.4rem;
+
+  @include mq(tb) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+  }
+
+  @include mq(pc) {
+    gap: 3.2rem;
+  }
+}
+
+.point__card {
+  --card-color: #{$color-orange};
+  position: relative;
+  padding: 5.6rem 2.4rem 3.2rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.8rem;
+  box-shadow: 0.8rem 0.8rem 0 var(--card-color);
+
+  &--blue {
+    --card-color: #{$color-blue};
+  }
+
+  &--green {
+    --card-color: #{$color-green};
+  }
+}
+
+.point__num {
+  position: absolute;
+  top: -4.4rem;
+  left: 1.6rem;
+  font-family: $font-en;
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--card-color);
+  -webkit-text-stroke: 0.6rem $text-color1;
+  paint-order: stroke fill;
+}
+
+.point__icon {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+.point__card-title {
+  margin-bottom: 1.2rem;
+  font-family: $font-round;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.point__card-text {
+  font-size: 1.5rem;
+}
+
+// ==========================================
+// 出店内容
+// ==========================================
+.contents {
+  background-color: $main-color-light;
+}
+
+.contents__list {
+  display: grid;
+  gap: 4.8rem;
+  padding-top: 2rem;
+
+  @include mq(tb) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5.6rem 3.2rem;
+  }
+}
+
+.contents__card {
+  --card-color: #{$color-orange};
+  position: relative;
+  padding: 2.4rem 2rem 3.2rem;
+  background-color: $text-color2;
+  border: 0.5rem dashed var(--card-color);
+  border-radius: 3.2rem;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s;
+
+  @include mq(pc) {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 5.6rem 2.8rem 3.2rem;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-1.2rem) rotate(-2deg);
+      box-shadow: 0 1.6rem 0 rgba($text-color1, 0.15);
+    }
+
+    &:nth-child(even):hover {
+      transform: translateY(-1.2rem) rotate(2deg);
+    }
+  }
+
+  &--blue {
+    --card-color: #{$color-blue};
+  }
+
+  &--green {
+    --card-color: #{$color-green};
+  }
+
+  &--red {
+    --card-color: #{$color-red};
+  }
+}
+
+.contents__card-badge {
+  position: absolute;
+  top: -2.8rem;
+  left: -1.2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7.6rem;
+  height: 7.6rem;
+  font-family: $font-round;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.05;
+  color: $text-color2;
+  background-color: var(--card-color);
+  border: 0.3rem solid $text-color2;
+  border-radius: 50%;
+  box-shadow: 0 0.4rem 0 rgba($text-color1, 0.25);
+
+  @include mq(pc) {
+    width: 8.4rem;
+    height: 8.4rem;
+    font-size: 1.6rem;
+  }
+}
+
+.contents__card-badge-dot {
+  line-height: 0.6;
+}
+
+.contents__card-img {
+  width: 82%;
+  margin: 1.6rem auto 2rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 0.4rem solid var(--card-color); // カードの色に合わせる
+  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+
+  @include mq(pc) {
+    order: 2;
+    width: 100%;
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.contents__card:nth-child(even) .contents__card-img {
+  border-radius: 45% 55% 42% 58% / 55% 45% 55% 45%;
+}
+
+.contents__card-title {
+  margin-bottom: 1rem;
+  font-family: $font-round;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.35;
+  color: var(--card-color);
+  text-align: center;
+
+  @include mq(pc) {
+    text-align: left;
+  }
+}
+
+.contents__card-text {
+  font-size: 1.5rem;
+}
+
+// ==========================================
+// タイムテーブル
+// ==========================================
+.timetable {
+  background-color: #e6f6fd;
+}
+
+.timetable__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.timetable__tab {
+  flex: 1;
+  max-width: 24rem;
+  padding: 1rem 1.2rem 1.2rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.3;
+  color: $text-color1;
+  background-color: $text-color2;
+  border: 0.3rem solid $text-color1;
+  border-radius: 1.6rem;
+  box-shadow: 0 0.5rem 0 $text-color1;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s,
+    background-color 0.3s,
+    color 0.3s;
+
+  @include mq(tb) {
+    font-size: 2.4rem;
+  }
+
+  &.is-active {
+    color: $text-color2;
+    background-color: $color-blue;
+
+    // 日曜のタブは赤
+    &.timetable__tab--sun {
+      background-color: $color-red;
+    }
+
+    .week {
+      box-shadow: 0 0 0 0.2rem $text-color2;
+    }
+
+    transform: translateY(0.5rem);
+    box-shadow: 0 0 0 $text-color1;
+  }
+
+  @media (hover: hover) {
+    &:not(.is-active):hover {
+      transform: translateY(0.2rem) rotate(-1.5deg);
+      box-shadow: 0 0.3rem 0 $text-color1;
+    }
+  }
+}
+
+.timetable__tab-day {
+  display: block;
+  font-family: $font-en;
+  font-size: 1.3rem;
+  letter-spacing: 0.16em;
+}
+
+.timetable__panels {
+  margin-top: 2.4rem;
+  padding: 0.8rem 1.6rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.4rem;
+
+  @include mq(tb) {
+    padding: 1.6rem 3.2rem;
+  }
+}
+
+.timetable__row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.2rem;
+  padding-block: 1.4rem;
+
+  & + & {
+    border-top: 0.2rem dashed rgba($text-color1, 0.2);
+  }
+
+  @include mq(tb) {
+    grid-template-columns: 12rem 1fr;
+    align-items: center;
+  }
+}
+
+.timetable__time {
+  font-family: $font-en;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-blue;
+
+  small {
+    display: block;
+    font-size: 1.3rem;
+  }
+
+  @include mq(tb) {
+    font-size: 2.4rem;
+  }
+}
+
+.timetable__content {
+  @include mq(tb) {
+    display: grid;
+    grid-template-columns: 8.4rem 1fr auto;
+    align-items: center;
+    gap: 1.6rem;
+  }
+}
+
+.timetable__tag {
+  display: inline-block;
+  padding: 0.1rem 1rem;
+  font-family: $font-round;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: $text-color2;
+  text-align: center;
+  border-radius: 99.9rem;
+
+  @each $name in ("red", "orange", "green", "blue") {
+    &--#{$name} {
+      background-color: map.get($colors, $name);
+    }
+  }
+
+  &--gray {
+    background-color: $text-color3;
+  }
+}
+
+.timetable__title {
+  margin-top: 0.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.timetable__place {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  color: $text-color3;
+
+  &::before {
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50% 50% 50% 0;
+    background-color: $color-red;
+    transform: rotate(-45deg);
+  }
+}
+
+.timetable__note {
+  margin-top: 1.6rem;
+  font-size: 1.3rem;
+  color: $text-color3;
+  text-align: center;
+}
+
+// ==========================================
+// 会場マップ
+// ==========================================
+.map {
+  background-color: #eaf7df;
+}
+
+.map__lead {
+  margin-top: -2.4rem;
+  margin-bottom: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.map__wrap {
+  display: grid;
+  gap: 2.4rem;
+
+  @include mq(pc) {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
+    gap: 3.2rem;
+  }
+}
+
+.map__figure {
+  padding: 1rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.4rem;
+  box-shadow: 0.8rem 0.8rem 0 $color-green;
+}
+
+.map__svg {
+  width: 100%;
+  height: auto;
+}
+
+.map__area {
+  cursor: pointer;
+  outline: none;
+
+  .map__area-shape {
+    stroke-width: 4;
+    stroke-dasharray: 10 7;
+    transition: stroke-width 0.3s, filter 0.3s;
+  }
+
+  &:hover .map__area-shape,
+  &:focus-visible .map__area-shape,
+  &.is-active .map__area-shape {
+    stroke-width: 6;
+    stroke-dasharray: none;
+  }
+
+  &:focus-visible .map__area-shape {
+    filter: drop-shadow(0 0 6px $color-blue);
+  }
+}
+
+.map__label {
+  font-family: $font-round;
+  font-size: 22px;
+  font-weight: 800;
+  fill: $text-color1;
+  stroke: $text-color2;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  pointer-events: none;
+
+  &--small {
+    font-size: 18px;
+  }
+}
+
+.map__pin {
+  stroke: $text-color1;
+  stroke-width: 2.5;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+
+  @each $name, $color in $colors {
+    &--#{$name} {
+      fill: $color;
+    }
+  }
+}
+
+.map__side {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.map__legend-btn {
+  --btn-color: #{$color-orange};
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  font-family: $font-round;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background-color: $text-color2;
+  border: 0.25rem solid $text-color1;
+  border-radius: 99.9rem;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s,
+    color 0.3s;
+
+  &::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--btn-color);
+    border: 0.2rem solid $text-color1;
+  }
+
+  @each $name, $color in $colors {
+    &--#{$name} {
+      --btn-color: #{$color};
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-0.3rem) rotate(-2deg);
+    }
+  }
+
+  &.is-active {
+    color: $text-color2;
+    background-color: $text-color1;
+
+    &::before {
+      border-color: $text-color2;
+    }
+  }
+}
+
+.map__info {
+  position: relative;
+  min-height: 14rem;
+  padding: 2rem 2.2rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2rem;
+
+  &.is-open .map__info-empty {
+    display: none;
+  }
+}
+
+.map__info-empty {
+  display: grid;
+  place-items: center;
+  min-height: 9rem;
+  font-weight: 700;
+  color: $text-color3;
+  text-align: center;
+}
+
+.map__detail {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.map__detail-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 900;
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: 1.2rem;
+    height: 2.4rem;
+    border-radius: 0.6rem;
+    background-color: $color-green;
+  }
+}
+
+// ==========================================
+// アクセス
+// ==========================================
+.access {
+  background-color: #fffdf5;
+}
+
+.access__wrap {
+  display: grid;
+  gap: 3.2rem;
+
+  @include mq(pc) {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 5.6rem;
+  }
+}
+
+.access__map {
+  filter: drop-shadow(0.8rem 0.8rem 0 $main-color);
+}
+
+.access__svg {
+  width: 100%;
+  height: auto;
+  font-family: $font-round;
+}
+
+.access__item {
+  display: grid;
+  gap: 0.6rem;
+  padding-block: 1.6rem;
+
+  & + & {
+    border-top: 0.2rem dashed rgba($text-color1, 0.25);
+  }
+
+  @each $name in ("red", "orange", "green", "blue") {
+    &--#{$name} .access__term {
+      background-color: map.get($colors, $name);
+    }
+  }
+}
+
+.access__term {
+  width: fit-content;
+  padding: 0.2rem 1.6rem;
+  font-family: $font-round;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: $text-color2;
+  border-radius: 99.9rem;
+}
+
+.access__desc {
+  font-weight: 700;
+}
+
+// ==========================================
+// 料金
+// ==========================================
+.price {
+  background-color: $main-color;
+}
+
+.price__free {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 26rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  color: $text-color2;
+  text-align: center;
+  background-color: $accent-color;
+  border: 0.5rem solid $text-color1;
+  border-radius: 50%;
+  box-shadow: 0 1rem 0 $text-color1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1.2rem;
+    border: 0.3rem dashed rgba($text-color2, 0.8);
+    border-radius: 50%;
+  }
+
+  @include mq(tb) {
+    width: 32rem;
+  }
+}
+
+.price__free-label {
+  font-family: $font-en;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.price__free-text {
+  font-family: $font-round;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.2;
+
+  span {
+    display: block;
+    font-size: 6.4rem;
+    line-height: 1.1;
+
+    @include mq(tb) {
+      font-size: 8rem;
+    }
+  }
+}
+
+.price__free-sub {
+  margin-top: 0.6rem;
+  padding-inline: 2.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+
+  @include mq(tb) {
+    font-size: 1.4rem;
+  }
+}
+
+.price__table-wrap {
+  max-width: 80rem;
+  margin: 5.6rem auto 0;
+}
+
+.price__caption {
+  margin-bottom: 1.6rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.price__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 1.3rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.4rem;
+
+  @include mq(tb) {
+    font-size: 1.6rem;
+  }
+
+  thead th {
+    padding: 1.2rem 0.8rem;
+
+    &:first-child {
+      border-top-left-radius: 2rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: 2rem;
+    }
+
+    font-family: $font-round;
+    font-weight: 800;
+    color: $text-color2;
+    background-color: $text-color1;
+  }
+
+  tbody th,
+  tbody td {
+    padding: 1.4rem 0.8rem;
+    border-top: 0.2rem dashed rgba($text-color1, 0.2);
+
+    @include mq(tb) {
+      padding: 1.6rem 2rem;
+    }
+  }
+
+  tbody tr:first-child {
+    th,
+    td {
+      border-top: 0;
+    }
+  }
+
+  tbody th {
+    font-weight: 700;
+    text-align: left;
+  }
+
+  tbody td {
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.price__zero {
+  font-family: $font-round;
+  font-weight: 900;
+  color: $color-red;
+}
+
+// ==========================================
+// 申し込み
+// ==========================================
+.entry {
+  background-color: #fff0de;
+}
+
+.entry__lead {
+  max-width: 76rem;
+  margin: -1.6rem auto 4.8rem;
+  padding: 2rem 2.4rem;
+  text-align: center;
+  background-color: $text-color2;
+  border: 0.3rem dashed $color-orange;
+  border-radius: 2.4rem;
+}
+
+.entry__lead-title {
+  font-family: $font-round;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.5;
+  color: $color-red;
+
+  @include mq(tb) {
+    font-size: 2.2rem;
+  }
+}
+
+.entry__lead-text {
+  margin-top: 0.8rem;
+  font-size: 1.4rem;
+  text-align: left;
+
+  @include mq(tb) {
+    text-align: center;
+  }
+}
+
+.entry__steps {
+  display: grid;
+  gap: 4rem;
+  padding-top: 2rem;
+
+  @include mq(tb) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.entry__step {
+  --step-color: #{$color-red};
+  position: relative;
+  padding: 3.6rem 2rem 2.4rem;
+  text-align: center;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 2.4rem;
+
+  &--orange {
+    --step-color: #{$color-orange};
+  }
+
+  &--green {
+    --step-color: #{$color-green};
+  }
+
+  // ステップ間の矢印
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3.2rem;
+    width: 2.4rem;
+    height: 1.6rem;
+    background-color: $text-color1;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform: translateX(-50%);
+
+    @include mq(tb) {
+      left: auto;
+      right: -3.4rem;
+      bottom: auto;
+      top: 50%;
+      width: 1.6rem;
+      height: 2.4rem;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.entry__step-num {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.2rem 1.8rem;
+  font-family: $font-en;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: $text-color2;
+  white-space: nowrap;
+  background-color: var(--step-color);
+  border: 0.3rem solid $text-color1;
+  border-radius: 99.9rem;
+  transform: translateX(-50%);
+
+  b {
+    font-size: 2.2rem;
+  }
+}
+
+.entry__step-title {
+  margin-bottom: 0.8rem;
+  font-family: $font-round;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.entry__step-text {
+  font-size: 1.4rem;
+}
+
+// フォーム
+.form {
+  max-width: 76rem;
+  margin: 5.6rem auto 0;
+  padding: 3.2rem 2rem;
+  background-color: $text-color2;
+  border: 0.35rem solid $text-color1;
+  border-radius: 3.2rem;
+  box-shadow: 1rem 1rem 0 $main-color;
+
+  @include mq(tb) {
+    padding: 4.8rem 5.6rem;
+  }
+}
+
+.form__item + .form__item {
+  margin-top: 2.8rem;
+}
+
+.form__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  padding: 0;
+  font-family: $font-round;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.form__required {
+  padding: 0.1rem 0.8rem;
+  font-size: 1.1rem;
+  color: $text-color2;
+  background-color: $color-red;
+  border-radius: 0.6rem;
+}
+
+.form__hint {
+  font-size: 1.3rem;
+  color: $text-color3;
+}
+
+.form__input,
+.form__select {
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+  background-color: #fffdf5;
+  border: 0.25rem solid #bda894;
+  border-radius: 1.2rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: $color-blue;
+    box-shadow: 0 0 0 0.4rem rgba($color-blue, 0.2);
+  }
+
+  &.is-error {
+    border-color: $color-red;
+    background-color: #fff3f1;
+  }
+}
+
+.form__select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.form__select-wrap {
+  position: relative;
+  max-width: 24rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 1.6rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-right: 0.3rem solid $text-color1;
+    border-bottom: 0.3rem solid $text-color1;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+}
+
+.form__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &.is-error .form__choice {
+    border-color: $color-red;
+  }
+}
+
+.form__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.6rem;
+  font-weight: 700;
+  background-color: #fffdf5;
+  border: 0.25rem solid #bda894;
+  border-radius: 99.9rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  input {
+    width: 1.8rem;
+    height: 1.8rem;
+    accent-color: $color-red;
+  }
+
+  &:has(input:checked) {
+    background-color: $main-color-light;
+    border-color: $text-color1;
+    transform: scale(1.03);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 0.3rem solid $color-blue;
+    outline-offset: 0.2rem;
+  }
+}
+
+.form__choices--column {
+  flex-direction: column;
+}
+
+// ワークショップ選択（名前・時間・料金）
+.form__choice--card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.2rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 1.6rem;
+
+  input {
+    grid-row: span 2;
+  }
+
+  @include mq(tb) {
+    grid-template-columns: auto 1fr auto;
+
+    input {
+      grid-row: auto;
+    }
+  }
+
+  &:has(input:checked) {
+    transform: none;
+  }
+}
+
+.form__choice-name {
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.form__choice-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  font-family: $font-en;
+  font-size: 1.4rem;
+  color: $text-color3;
+
+  b {
+    font-family: $font-round;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: $color-red;
+  }
+}
+
+.form__fixed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.2rem;
+  font-family: $font-round;
+  font-size: 1.8rem;
+  font-weight: 900;
+
+  .week {
+    margin-left: -0.8rem;
+  }
+}
+
+.form__fixed-note,
+.form__note {
+  font-family: $font-base;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: $text-color3;
+}
+
+.form__note {
+  margin-top: 0.6rem;
+}
+
+// 参加費の目安
+.form__total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem 1.2rem;
+  margin-top: 3.2rem;
+  padding: 1.6rem;
+  background-color: $main-color-light;
+  border-radius: 1.6rem;
+}
+
+.form__total-label {
+  font-family: $font-round;
+  font-weight: 800;
+}
+
+.form__total-price {
+  font-family: $font-round;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: $color-red;
+
+  span {
+    font-family: $font-en;
+    font-size: 3.2rem;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.form__total-note {
+  width: 100%;
+  font-size: 1.3rem;
+  color: $text-color3;
+  text-align: center;
+}
+
+.form__error {
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $color-red;
+
+  &:empty {
+    display: none;
+  }
+
+  &::before {
+    content: "！ ";
+  }
+}
+
+.entry__btn {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.entry__result {
+  display: none;
+  margin-top: 2.4rem;
+  padding: 1.4rem 1.6rem;
+  font-family: $font-round;
+  font-weight: 800;
+  color: #0e7a41;
+  text-align: center;
+  background-color: #e5f7ec;
+  border: 0.25rem solid $color-green;
+  border-radius: 1.6rem;
+
+  &.is-show {
+    display: block;
+  }
+}
+
+.entry__result-title {
+  font-size: 1.6rem;
+}
+
+// 参加内容の確認
+.entry__summary {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  font-family: $font-base;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $text-color1;
+  text-align: left;
+  border-top: 0.2rem dashed rgba($color-green, 0.5);
+
+  div {
+    display: grid;
+    grid-template-columns: 10.4rem 1fr;
+    gap: 1rem;
+  }
+
+  dt {
+    color: #0e7a41;
+  }
+}
+
+// ==========================================
+// よくある質問
+// ==========================================
+.faq {
+  background-color: #fffdf5;
+}
+
+.faq__list {
+  max-width: 84rem;
+  margin-inline: auto;
+}
+
+.faq__item {
+  overflow: hidden;
+  background-color: $text-color2;
+  border: 0.3rem solid $text-color1;
+  border-radius: 2rem;
+  box-shadow: 0 0.5rem 0 $text-color1;
+
+  & + & {
+    margin-top: 1.8rem;
+  }
+}
+
+.faq__head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 1.6rem;
+  font-family: $font-round;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.5;
+
+  @include mq(tb) {
+    padding: 2rem 2.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+.faq__q,
+.faq__a {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  font-family: $font-en;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $text-color2;
+  border-radius: 50%;
+}
+
+.faq__q {
+  background-color: $color-red;
+}
+
+.faq__a {
+  background-color: $color-blue;
+}
+
+.faq__question {
+  flex: 1;
+}
+
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: $main-color;
+  border: 0.25rem solid $text-color1;
+  border-radius: 50%;
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 0.3rem;
+    border-radius: 0.2rem;
+    background-color: $text-color1;
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+.faq__item.is-open .faq__icon {
+  background-color: $color-sky;
+  transform: rotate(225deg);
+}
+
+.faq__body {
+  display: none;
+}
+
+.faq__answer {
+  display: flex;
+  gap: 1.2rem;
+  margin: 0 1.6rem;
+  padding: 1.6rem 0 2rem;
+  border-top: 0.2rem dashed rgba($text-color1, 0.25);
+
+  @include mq(tb) {
+    margin: 0 2.4rem;
+  }
+}
+
+// ==========================================
+// フッター
+// ==========================================
+.footer {
+  position: relative;
+  padding: 0 0 9.6rem;
+
+  @include mq(tb) {
+    padding-bottom: 3.2rem;
+  }
+
+  background-color: $color-sky;
+
+  // 上端の波線
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% - 0.1rem);
+    height: 2.4rem;
+    background-color: inherit;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E") repeat-x left bottom / 12rem 2.4rem;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E") repeat-x left bottom / 12rem 2.4rem;
+  }
+}
+
+.footer__garland {
+  z-index: 2;
+  margin-bottom: 2rem;
+}
+
+.footer__inner {
+  text-align: center;
+}
+
+.footer__logo {
+  display: inline-block;
+  padding: 0.8rem 2.4rem;
+  font-family: $font-round;
+  font-size: 2rem;
+  font-weight: 900;
+  background-color: $text-color2;
+  border: 0.3rem solid $text-color1;
+  border-radius: 99.9rem;
+
+  @include mq(tb) {
+    font-size: 2.4rem;
+  }
+}
+
+.footer__info {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  font-weight: 700;
+
+  @include mq(tb) {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.footer__info-row {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  justify-items: center;
+
+  @include mq(tb) {
+    justify-items: start;
+    text-align: left;
+  }
+
+  dt {
+    padding: 0 1.2rem;
+    font-family: $font-round;
+    font-size: 1.3rem;
+    font-weight: 800;
+    background-color: $main-color;
+    border-radius: 99.9rem;
+  }
+}
+
+.footer__note {
+  max-width: 72rem;
+  margin: 2.8rem auto 0;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: left;
+  background-color: rgba($text-color2, 0.75);
+  border-radius: 1.2rem;
+}
+
+.footer__copy {
+  margin-top: 2.4rem;
+  font-family: $font-en;
+  font-size: 1.2rem;
+}

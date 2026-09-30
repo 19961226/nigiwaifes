@@ -1,0 +1,3517 @@
+@charset "UTF-8";
+html {
+  font-size: 62.5%;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 80px;
+}
+
+body {
+  position: relative;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: #4a2e22;
+  background-color: #fff4c7;
+  overflow-x: hidden;
+}
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
+body.is-fixed {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+li {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 0.3rem solid #1a7fd0;
+  outline-offset: 0.3rem;
+}
+
+.svg-symbols {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 112rem;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+@media screen and (min-width: 768px) {
+  .inner {
+    padding-inline: 3.2rem;
+  }
+}
+
+.c-red {
+  color: #e03a2f;
+}
+
+.c-orange {
+  color: #e86a00;
+}
+
+.c-green {
+  color: #169c55;
+}
+
+.c-blue {
+  color: #1a7fd0;
+}
+
+.c-sky {
+  color: #3cbbeb;
+}
+
+.c-yellow {
+  color: #ffd84d;
+}
+
+.c-brown {
+  color: #8c5a3c;
+}
+
+@media screen and (min-width: 768px) {
+  .u-sp {
+    display: none;
+  }
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-height: 5.6rem;
+  padding: 1.2rem 3.2rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background-color: #e03a2f;
+  border: 0.3rem solid #4a2e22;
+  border-radius: 99.9rem;
+  box-shadow: 0 0.6rem 0 #4a2e22;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s;
+}
+.btn::after {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  border-top: 0.3rem solid currentColor;
+  border-right: 0.3rem solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(0.3rem);
+    box-shadow: 0 0.3rem 0 #4a2e22;
+  }
+  .btn:hover::after {
+    transform: translateX(0.3rem) rotate(45deg);
+  }
+}
+.btn:active {
+  transform: translateY(0.6rem);
+  box-shadow: 0 0 0 #4a2e22;
+}
+.btn--white {
+  color: #4a2e22;
+  background-color: #ffffff;
+}
+.btn--small {
+  min-height: 4rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.3rem;
+  box-shadow: 0 0.4rem 0 #4a2e22;
+}
+.btn--small::after {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .btn--small {
+    padding: 0.8rem 2rem;
+    font-size: 1.4rem;
+  }
+}
+.btn--large {
+  min-width: min(100%, 36rem);
+  min-height: 6.4rem;
+  font-size: 1.7rem;
+}
+
+.sec {
+  position: relative;
+  padding-block: 7.2rem 8rem;
+}
+@media screen and (min-width: 1024px) {
+  .sec {
+    padding-block: 10rem 11.2rem;
+  }
+}
+.sec--wave::before, .sec--zigzag::before, .sec--scallop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 0.1rem);
+  background-color: inherit;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: left bottom;
+  mask-position: left bottom;
+  pointer-events: none;
+}
+.sec--wave::before {
+  height: 2.4rem;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 12rem 2.4rem;
+  mask-size: 12rem 2.4rem;
+}
+.sec--zigzag::before {
+  height: 1.6rem;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 3.2rem 1.6rem;
+  mask-size: 3.2rem 1.6rem;
+}
+.sec--scallop::before {
+  height: 1.8rem;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 18'%3E%3Cpath d='M0 18A18 18 0 0 1 36 18Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 18'%3E%3Cpath d='M0 18A18 18 0 0 1 36 18Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 3.6rem 1.8rem;
+  mask-size: 3.6rem 1.8rem;
+}
+
+.sec__title {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+@media screen and (min-width: 1024px) {
+  .sec__title {
+    margin-bottom: 5.6rem;
+  }
+}
+
+.sec__sub-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #4a2e22;
+}
+.sec__sub-title::before, .sec__sub-title::after {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background-color: #e03a2f;
+  box-shadow: 1.4rem 0 0 #1a7fd0;
+}
+.sec__sub-title::before {
+  transform: translateX(-1.4rem);
+}
+@media screen and (min-width: 1024px) {
+  .sec__sub-title {
+    font-size: 1.8rem;
+  }
+}
+
+.sec__main-title {
+  margin-top: 0.4rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  color: #4a2e22;
+}
+@media screen and (min-width: 768px) {
+  .sec__main-title {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .sec__main-title {
+    font-size: 4.8rem;
+  }
+}
+
+.sec__char {
+  display: inline-block;
+  text-shadow: 0.2rem 0 0 #ffffff, -0.2rem 0 0 #ffffff, 0 0.2rem 0 #ffffff, 0 -0.2rem 0 #ffffff, 0.15rem 0.15rem 0 #ffffff, -0.15rem -0.15rem 0 #ffffff, 0.15rem -0.15rem 0 #ffffff, -0.15rem 0.15rem 0 #ffffff, 0 0.45rem 0 rgba(74, 46, 34, 0.25);
+}
+.sec__char--red {
+  color: #e03a2f;
+}
+.sec__char--orange {
+  color: #e86a00;
+}
+.sec__char--green {
+  color: #169c55;
+}
+.sec__char--blue {
+  color: #1a7fd0;
+}
+
+.garland {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1.2rem;
+  height: 6rem;
+  pointer-events: none;
+}
+.garland::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M0 2Q50 30 100 2' fill='none' stroke='%234a2e22' stroke-width='2.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+}
+
+.garland__flag {
+  position: relative;
+  display: block;
+  width: 2.2rem;
+  height: 2.8rem;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+}
+@media screen and (min-width: 768px) {
+  .garland__flag {
+    width: 3.4rem;
+    height: 4.2rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .garland__flag {
+    width: 4rem;
+    height: 5rem;
+  }
+}
+.garland__flag:nth-child(1) {
+  margin-top: 0.299744898rem;
+  animation-delay: -0.37s;
+}
+.garland__flag:nth-child(2) {
+  margin-top: 0.6548469388rem;
+  animation-delay: -0.74s;
+}
+.garland__flag:nth-child(3) {
+  margin-top: 0.9507653061rem;
+  animation-delay: -1.11s;
+}
+.garland__flag:nth-child(4) {
+  margin-top: 1.1875rem;
+  animation-delay: -1.48s;
+}
+.garland__flag:nth-child(5) {
+  margin-top: 1.3650510204rem;
+  animation-delay: -1.85s;
+}
+.garland__flag:nth-child(6) {
+  margin-top: 1.4834183673rem;
+  animation-delay: -2.22s;
+}
+.garland__flag:nth-child(7) {
+  margin-top: 1.5426020408rem;
+  animation-delay: -2.59s;
+}
+.garland__flag:nth-child(8) {
+  margin-top: 1.5426020408rem;
+  animation-delay: -2.96s;
+}
+.garland__flag:nth-child(9) {
+  margin-top: 1.4834183673rem;
+  animation-delay: -3.33s;
+}
+.garland__flag:nth-child(10) {
+  margin-top: 1.3650510204rem;
+  animation-delay: -3.7s;
+}
+.garland__flag:nth-child(11) {
+  margin-top: 1.1875rem;
+  animation-delay: -4.07s;
+}
+.garland__flag:nth-child(12) {
+  margin-top: 0.9507653061rem;
+  animation-delay: -4.44s;
+}
+.garland__flag:nth-child(13) {
+  margin-top: 0.6548469388rem;
+  animation-delay: -4.81s;
+}
+.garland__flag:nth-child(14) {
+  margin-top: 0.299744898rem;
+  animation-delay: -5.18s;
+}
+.garland__flag--red {
+  background-color: #e03a2f;
+}
+.garland__flag--yellow {
+  background-color: #f5b800;
+}
+.garland__flag--blue {
+  background-color: #1a7fd0;
+}
+.garland__flag--green {
+  background-color: #169c55;
+}
+.garland__flag--orange {
+  background-color: #ff8a1f;
+}
+.garland__flag--sky {
+  background-color: #3cbbeb;
+}
+
+.week {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 0.4rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  border-radius: 50%;
+  vertical-align: 0.1em;
+}
+.week--sat {
+  background-color: #1a7fd0;
+}
+.week--sun {
+  background-color: #e03a2f;
+}
+
+.pagetop {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5.6rem;
+  color: #e03a2f;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(3rem);
+  transition: opacity 0.4s, visibility 0.4s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media screen and (min-width: 768px) {
+  .pagetop {
+    right: 2.4rem;
+    bottom: 2.4rem;
+  }
+}
+.pagetop.is-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.pagetop__balloon {
+  position: relative;
+  display: block;
+}
+.pagetop__balloon svg {
+  width: 6.4rem;
+  height: 13.4rem;
+  filter: drop-shadow(0 0.3rem 0 rgba(74, 46, 34, 0.3));
+}
+@media screen and (min-width: 768px) {
+  .pagetop__balloon svg {
+    width: 7.2rem;
+    height: 15.1rem;
+  }
+}
+
+.pagetop__text {
+  position: absolute;
+  top: 28.5714285714%;
+  left: 50%;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+@media screen and (min-width: 768px) {
+  .pagetop__text {
+    font-size: 1.5rem;
+  }
+}
+
+.bg-balloons {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-balloons__item {
+  position: absolute;
+  opacity: 0;
+  animation: balloonRise 18s linear infinite;
+  filter: drop-shadow(0 0.4rem 0 rgba(74, 46, 34, 0.12));
+}
+.bg-balloons__item--1 {
+  top: 2.7%;
+  left: 86.8%;
+  width: 2.8rem;
+  height: 5.9rem;
+  color: #e03a2f;
+  animation-duration: 16s;
+  animation-delay: -15s;
+}
+.bg-balloons__item--2 {
+  top: 6.3%;
+  left: 7.3%;
+  width: 2.9rem;
+  height: 6.1rem;
+  color: #3cbbeb;
+  animation-duration: 24s;
+  animation-delay: -11s;
+}
+.bg-balloons__item--3 {
+  top: 10.3%;
+  left: 53.4%;
+  width: 3.2rem;
+  height: 6.7rem;
+  color: #ff8a1f;
+  animation-duration: 22s;
+  animation-delay: -13s;
+}
+.bg-balloons__item--4 {
+  top: 13.2%;
+  left: 36.4%;
+  width: 2.5rem;
+  height: 5.2rem;
+  color: #169c55;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+.bg-balloons__item--5 {
+  top: 15.2%;
+  left: 43.7%;
+  width: 2.7rem;
+  height: 5.7rem;
+  color: #1a7fd0;
+  animation-duration: 23s;
+  animation-delay: -3s;
+}
+.bg-balloons__item--6 {
+  top: 20%;
+  left: 59.6%;
+  width: 3.1rem;
+  height: 6.4rem;
+  color: #ff8fb1;
+  animation-duration: 18s;
+  animation-delay: -7s;
+}
+.bg-balloons__item--7 {
+  top: 22.8%;
+  left: 17.2%;
+  width: 3.8rem;
+  height: 7.9rem;
+  color: #f5b800;
+  animation-duration: 20s;
+  animation-delay: -10s;
+}
+.bg-balloons__item--8 {
+  top: 25.3%;
+  left: 32.3%;
+  width: 3.5rem;
+  height: 7.4rem;
+  color: #e03a2f;
+  animation-duration: 17s;
+  animation-delay: 0s;
+}
+.bg-balloons__item--9 {
+  top: 29.5%;
+  left: 51.6%;
+  width: 2.5rem;
+  height: 5.2rem;
+  color: #3cbbeb;
+  animation-duration: 22s;
+  animation-delay: -3s;
+}
+.bg-balloons__item--10 {
+  top: 31.7%;
+  left: 91.4%;
+  width: 3.8rem;
+  height: 8rem;
+  color: #ff8a1f;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+.bg-balloons__item--11 {
+  top: 35.3%;
+  left: 77.5%;
+  width: 3.5rem;
+  height: 7.4rem;
+  color: #169c55;
+  animation-duration: 21s;
+  animation-delay: -20s;
+}
+.bg-balloons__item--12 {
+  top: 37.8%;
+  left: 18.5%;
+  width: 2.9rem;
+  height: 6.1rem;
+  color: #1a7fd0;
+  animation-duration: 18s;
+  animation-delay: -14s;
+}
+.bg-balloons__item--13 {
+  top: 41.9%;
+  left: 93.6%;
+  width: 3.7rem;
+  height: 7.7rem;
+  color: #ff8fb1;
+  animation-duration: 15s;
+  animation-delay: -6s;
+}
+.bg-balloons__item--14 {
+  top: 44.7%;
+  left: 77.1%;
+  width: 2.9rem;
+  height: 6.1rem;
+  color: #f5b800;
+  animation-duration: 17s;
+  animation-delay: -8s;
+}
+.bg-balloons__item--15 {
+  top: 48.1%;
+  left: 42.6%;
+  width: 3.2rem;
+  height: 6.8rem;
+  color: #e03a2f;
+  animation-duration: 19s;
+  animation-delay: -4s;
+}
+.bg-balloons__item--16 {
+  top: 50.8%;
+  left: 87.3%;
+  width: 2.7rem;
+  height: 5.7rem;
+  color: #3cbbeb;
+  animation-duration: 14s;
+  animation-delay: -12s;
+}
+.bg-balloons__item--17 {
+  top: 53.5%;
+  left: 41.9%;
+  width: 3.4rem;
+  height: 7.2rem;
+  color: #ff8a1f;
+  animation-duration: 16s;
+  animation-delay: -20s;
+}
+.bg-balloons__item--18 {
+  top: 57.1%;
+  left: 61.3%;
+  width: 3.1rem;
+  height: 6.5rem;
+  color: #169c55;
+  animation-duration: 18s;
+  animation-delay: -18s;
+}
+.bg-balloons__item--19 {
+  top: 60.6%;
+  left: 31.7%;
+  width: 3.3rem;
+  height: 6.8rem;
+  color: #1a7fd0;
+  animation-duration: 24s;
+  animation-delay: -9s;
+}
+.bg-balloons__item--20 {
+  top: 62.8%;
+  left: 72%;
+  width: 2.9rem;
+  height: 6rem;
+  color: #ff8fb1;
+  animation-duration: 21s;
+  animation-delay: -15s;
+}
+.bg-balloons__item--21 {
+  top: 66.3%;
+  left: 53.2%;
+  width: 2.4rem;
+  height: 5.1rem;
+  color: #f5b800;
+  animation-duration: 17s;
+  animation-delay: -12s;
+}
+.bg-balloons__item--22 {
+  top: 70%;
+  left: 62.8%;
+  width: 2.7rem;
+  height: 5.7rem;
+  color: #e03a2f;
+  animation-duration: 18s;
+  animation-delay: -19s;
+}
+.bg-balloons__item--23 {
+  top: 74.4%;
+  left: 40.6%;
+  width: 3rem;
+  height: 6.3rem;
+  color: #3cbbeb;
+  animation-duration: 16s;
+  animation-delay: -9s;
+}
+.bg-balloons__item--24 {
+  top: 77%;
+  left: 14.5%;
+  width: 2.2rem;
+  height: 4.6rem;
+  color: #ff8a1f;
+  animation-duration: 20s;
+  animation-delay: -4s;
+}
+.bg-balloons__item--25 {
+  top: 79.4%;
+  left: 32.4%;
+  width: 2.5rem;
+  height: 5.2rem;
+  color: #169c55;
+  animation-duration: 24s;
+  animation-delay: -14s;
+}
+.bg-balloons__item--26 {
+  top: 82.8%;
+  left: 47.6%;
+  width: 2.9rem;
+  height: 6rem;
+  color: #1a7fd0;
+  animation-duration: 23s;
+  animation-delay: -16s;
+}
+.bg-balloons__item--27 {
+  top: 85.6%;
+  left: 2%;
+  width: 3.8rem;
+  height: 7.9rem;
+  color: #ff8fb1;
+  animation-duration: 19s;
+  animation-delay: -6s;
+}
+.bg-balloons__item--28 {
+  top: 89.6%;
+  left: 16.9%;
+  width: 3.4rem;
+  height: 7.1rem;
+  color: #f5b800;
+  animation-duration: 22s;
+  animation-delay: -10s;
+}
+.bg-balloons__item--29 {
+  top: 93.6%;
+  left: 40.7%;
+  width: 2.7rem;
+  height: 5.6rem;
+  color: #e03a2f;
+  animation-duration: 20s;
+  animation-delay: -3s;
+}
+.bg-balloons__item--30 {
+  top: 96.6%;
+  left: 92.6%;
+  width: 2.9rem;
+  height: 6rem;
+  color: #3cbbeb;
+  animation-duration: 23s;
+  animation-delay: -2s;
+}
+@media screen and (max-width: 767px) {
+  .bg-balloons__item:nth-child(3n) {
+    display: none;
+  }
+}
+
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+.confetti--circle {
+  border-radius: 50%;
+}
+.confetti--triangle {
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.confetti--rect {
+  width: 0.6rem;
+  height: 1.2rem;
+  border-radius: 0.2rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 6.4rem;
+  background-color: rgba(255, 255, 255, 0.96);
+  border-bottom: 0.3rem solid #4a2e22;
+}
+@media screen and (min-width: 1024px) {
+  .header {
+    height: 8rem;
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 128rem;
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+@media screen and (min-width: 1024px) {
+  .header__inner {
+    gap: 2.4rem;
+    padding-inline: 2.4rem;
+  }
+}
+
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 900;
+  line-height: 1.05;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (hover: hover) {
+  .header__logo:hover {
+    transform: rotate(-3deg) scale(1.04);
+  }
+}
+
+.header__logo-sub {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+@media screen and (min-width: 1024px) {
+  .header__logo-sub {
+    font-size: 1.3rem;
+  }
+}
+
+.header__logo-main {
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+}
+@media screen and (min-width: 1024px) {
+  .header__logo-main {
+    font-size: 2.6rem;
+  }
+}
+
+.header__nav {
+  position: fixed;
+  top: 6.4rem;
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - 6.4rem);
+  padding: 3.2rem 2.4rem 4rem;
+  overflow-y: auto;
+  background-color: #ffd84d;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.68, -0.25, 0.27, 1.25), visibility 0.6s;
+}
+.header__nav.is-checked {
+  transform: translateX(0);
+  visibility: visible;
+}
+@media screen and (min-width: 1024px) {
+  .header__nav {
+    position: static;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+}
+
+.header__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+@media screen and (min-width: 1024px) {
+  .header__list {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .header__list {
+    gap: 2.8rem;
+  }
+}
+
+.header__link {
+  display: block;
+  padding: 1.2rem 0.8rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  border-bottom: 0.25rem dashed rgba(74, 46, 34, 0.35);
+}
+@media screen and (min-width: 1024px) {
+  .header__link {
+    position: relative;
+    padding: 0.4rem 0;
+    font-size: 1.4rem;
+    border-bottom: 0;
+  }
+  .header__link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.4rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: #e03a2f;
+    opacity: 0;
+    transform: translate(-50%, 0.8rem) scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+  }
+}
+@media screen and (min-width: 1024px) and (hover: hover) {
+  .header__link:hover {
+    color: #e03a2f;
+  }
+  .header__link:hover::after {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.header__drawer-deco {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: 4rem;
+}
+@media screen and (min-width: 1024px) {
+  .header__drawer-deco {
+    display: none;
+  }
+}
+
+.header__drawer-balloon {
+  width: 4rem;
+  height: 8.4rem;
+}
+.header__drawer-balloon:nth-child(2) {
+  margin-top: 2rem;
+}
+
+.header__btn {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+@media screen and (min-width: 1024px) {
+  .header__btn {
+    margin-left: 0;
+  }
+}
+
+.header__hamburger {
+  position: relative;
+  flex-shrink: 0;
+  width: 4.4rem;
+  height: 4.4rem;
+  background-color: #ffd84d;
+  border: 0.25rem solid #4a2e22;
+  border-radius: 1.2rem;
+}
+@media screen and (min-width: 1024px) {
+  .header__hamburger {
+    display: none;
+  }
+}
+.header__hamburger.is-checked .header__hamburger-line:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.header__hamburger.is-checked .header__hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translate(-50%, -50%) scaleX(0);
+}
+.header__hamburger.is-checked .header__hamburger-line:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.header__hamburger-line {
+  position: absolute;
+  left: 50%;
+  width: 2rem;
+  height: 0.3rem;
+  border-radius: 0.3rem;
+  background-color: #4a2e22;
+  transform: translate(-50%, -50%);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.3s, opacity 0.3s;
+}
+.header__hamburger-line:nth-child(1) {
+  top: 30%;
+}
+.header__hamburger-line:nth-child(2) {
+  top: 50%;
+}
+.header__hamburger-line:nth-child(3) {
+  top: 70%;
+}
+
+.fv {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: max(100svh, 68rem);
+  padding: calc(6.4rem + 5.6rem) 0 7.2rem;
+  overflow: hidden;
+  background-color: #ffd84d;
+  scroll-snap-align: start;
+}
+@media screen and (min-width: 1024px) {
+  .fv {
+    min-height: max(100svh, 76rem);
+    padding: calc(8rem + 6.4rem) 0 8rem;
+  }
+}
+
+.fv__rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300vmax;
+  height: 300vmax;
+  margin: -150vmax 0 0 -150vmax;
+  background: repeating-conic-gradient(from 0deg, #ffd84d 0deg 7.5deg, #ffe685 7.5deg 15deg);
+}
+
+.fv__garland {
+  position: absolute;
+  top: 6.4rem;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+@media screen and (min-width: 1024px) {
+  .fv__garland {
+    top: 8rem;
+  }
+}
+
+.fv__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 124rem;
+  padding: 0 1.6rem 10rem;
+}
+@media screen and (min-width: 768px) {
+  .fv__inner {
+    padding: 0 3.2rem 6rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .fv__inner {
+    padding: 2rem 4rem;
+  }
+}
+
+.fv__motifs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fv__motif {
+  position: absolute;
+  overflow: visible;
+}
+.fv__motif--balloon1, .fv__motif--balloon2, .fv__motif--balloon3, .fv__motif--balloon4 {
+  width: 3.6rem;
+  height: 7.6rem;
+}
+.fv__motif--balloon1 {
+  top: -3.6rem;
+  left: 0.4rem;
+}
+.fv__motif--balloon2 {
+  top: -2.4rem;
+  left: 16%;
+  width: 3rem;
+  height: 6.3rem;
+}
+.fv__motif--balloon3 {
+  display: none;
+  top: 46%;
+  left: 1%;
+}
+.fv__motif--balloon4 {
+  display: none;
+  top: 38%;
+  right: 2%;
+}
+.fv__motif--tree1, .fv__motif--tree2 {
+  width: 4.4rem;
+  height: 8rem;
+}
+.fv__motif--tree1 {
+  bottom: 0.4rem;
+  right: 3%;
+}
+.fv__motif--tree2 {
+  display: none;
+  top: 16%;
+  right: 13%;
+}
+.fv__motif--house1, .fv__motif--house2 {
+  width: 7.6rem;
+  height: 7rem;
+}
+.fv__motif--house1 {
+  bottom: 0.4rem;
+  left: 3%;
+}
+.fv__motif--house2 {
+  display: none;
+  bottom: 16%;
+  right: 5%;
+}
+.fv__motif--bicycle {
+  bottom: 0.4rem;
+  left: 30%;
+  width: 8rem;
+  height: 5.2rem;
+}
+.fv__motif--star1, .fv__motif--star2 {
+  width: 2.8rem;
+  height: 2.8rem;
+  color: #ffffff;
+}
+.fv__motif--star1 {
+  top: -1rem;
+  left: 26%;
+}
+.fv__motif--star2 {
+  display: none;
+  bottom: 34%;
+  right: 20%;
+}
+.fv__motif--food {
+  bottom: 1rem;
+  right: 22%;
+  width: 4.8rem;
+  height: 4.8rem;
+}
+@media screen and (min-width: 768px) {
+  .fv__motif--balloon3, .fv__motif--balloon4, .fv__motif--tree2, .fv__motif--house2, .fv__motif--star2 {
+    display: block;
+  }
+  .fv__motif--balloon1 {
+    top: 2%;
+    left: 3%;
+  }
+  .fv__motif--balloon2 {
+    top: 6%;
+    left: auto;
+    right: 4%;
+  }
+  .fv__motif--tree1 {
+    bottom: 6%;
+    right: auto;
+    left: 10%;
+  }
+  .fv__motif--house1 {
+    bottom: auto;
+    top: 26%;
+    left: 2%;
+  }
+  .fv__motif--bicycle {
+    left: 2%;
+    bottom: 0;
+  }
+  .fv__motif--food {
+    right: 16%;
+    bottom: 1%;
+  }
+  .fv__motif--star1 {
+    top: 10%;
+    left: 18%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .fv__motif--balloon1, .fv__motif--balloon3, .fv__motif--balloon4 {
+    width: 5.2rem;
+    height: 11rem;
+  }
+  .fv__motif--balloon2 {
+    width: 4.4rem;
+    height: 9.2rem;
+  }
+  .fv__motif--tree1, .fv__motif--tree2 {
+    width: 7.2rem;
+    height: 13.2rem;
+  }
+  .fv__motif--house1, .fv__motif--house2 {
+    width: 13rem;
+    height: 12rem;
+  }
+  .fv__motif--bicycle {
+    width: 14rem;
+    height: 9rem;
+  }
+  .fv__motif--food {
+    width: 7.2rem;
+    height: 7.2rem;
+  }
+  .fv__motif--star1, .fv__motif--star2 {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.fv__body {
+  position: relative;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: 4rem 1.2rem 3.6rem;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .fv__body {
+    padding: 5.6rem 4rem 4.8rem;
+  }
+}
+
+.fv__cloud {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #ffffff;
+  border-radius: 46% 54% 42% 58%/38% 44% 56% 62%;
+  box-shadow: 0 1rem 0 rgba(74, 46, 34, 0.08);
+}
+
+.fv__title {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: min(4.2rem, 10.6vw);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+@media screen and (min-width: 768px) {
+  .fv__title {
+    font-size: 6.4rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .fv__title {
+    font-size: 8.4rem;
+  }
+}
+
+.fv__title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.fv__title-char {
+  display: inline-block;
+  text-shadow: 0 0.4rem 0 rgba(74, 46, 34, 0.12);
+}
+.fv__title-char--red {
+  color: #e03a2f;
+}
+.fv__title-char--orange {
+  color: #e86a00;
+}
+.fv__title-char--green {
+  color: #169c55;
+}
+.fv__title-char--blue {
+  color: #1a7fd0;
+}
+.fv__title-char--sky {
+  color: #1c9fd6;
+}
+
+.fv__catch {
+  margin-top: 1.6rem;
+}
+
+.fv__catch-text {
+  display: inline-block;
+  padding: 0.7rem 2.8rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background-color: #1a7fd0;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 1.4rem) 50%, 100% 100%, 0 100%, 1.4rem 50%);
+}
+@media screen and (min-width: 768px) {
+  .fv__catch-text {
+    padding: 0.9rem 4rem;
+    font-size: 2rem;
+  }
+}
+
+.fv__date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 2rem;
+  margin-top: 2rem;
+}
+
+.fv__day {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+@media screen and (min-width: 768px) {
+  .fv__day {
+    font-size: 5rem;
+  }
+}
+
+.fv__week {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.6rem;
+  color: #ffffff;
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .fv__week {
+    width: 4.2rem;
+    height: 4.2rem;
+    font-size: 2.2rem;
+  }
+}
+.fv__week--sat {
+  background-color: #1a7fd0;
+}
+.fv__week--sun {
+  background-color: #e03a2f;
+}
+
+.fv__time {
+  margin-top: 0.4rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+@media screen and (min-width: 768px) {
+  .fv__time {
+    font-size: 2.6rem;
+  }
+}
+
+.fv__place {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+@media screen and (min-width: 768px) {
+  .fv__place {
+    font-size: 2.4rem;
+  }
+}
+
+.fv__place-pref {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  color: #7a5a48;
+}
+@media screen and (min-width: 768px) {
+  .fv__place-pref {
+    font-size: 1.5rem;
+  }
+}
+
+.fv__badge {
+  position: absolute;
+  top: -5.6rem;
+  right: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 7.6rem;
+  height: 7.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #ffffff;
+  background-color: #e86a00;
+  border: 0.3rem solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.3rem #4a2e22, 0 0.5rem 0 0.3rem #4a2e22;
+}
+@media screen and (min-width: 768px) {
+  .fv__badge {
+    top: auto;
+    right: 1.6rem;
+    bottom: 12rem;
+    width: 11rem;
+    height: 11rem;
+    font-size: 2.4rem;
+  }
+}
+
+.fv__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem 2rem;
+  margin-top: 2.4rem;
+}
+
+.fv__scroll {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  transform: translateX(-50%);
+}
+.fv__scroll::after {
+  content: "";
+  width: 1.2rem;
+  height: 1.2rem;
+  border-right: 0.3rem solid #4a2e22;
+  border-bottom: 0.3rem solid #4a2e22;
+  transform: rotate(45deg);
+}
+
+.about {
+  background-color: #fffdf5;
+}
+
+.about__wrap {
+  display: grid;
+  gap: 4rem;
+}
+@media screen and (min-width: 1024px) {
+  .about__wrap {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 6.4rem;
+  }
+}
+
+.about__text {
+  position: relative;
+}
+.about__text p + p {
+  margin-top: 1.6rem;
+}
+.about__text p:first-child {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.6;
+  color: #e03a2f;
+}
+@media screen and (min-width: 768px) {
+  .about__text p:first-child {
+    font-size: 2.4rem;
+  }
+}
+
+.about__deco {
+  position: absolute;
+  right: 0;
+  bottom: -6rem;
+  width: 3.6rem;
+  height: 7.6rem;
+}
+@media screen and (min-width: 1024px) {
+  .about__deco {
+    right: -2rem;
+    bottom: -8rem;
+  }
+}
+
+.about__table-wrap {
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.4rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0.8rem 0.8rem 0 #ffd84d;
+}
+
+.about__table {
+  width: 100%;
+}
+.about__table tr + tr th,
+.about__table tr + tr td {
+  border-top: 0.2rem dashed rgba(74, 46, 34, 0.25);
+}
+.about__table th {
+  width: 30%;
+  padding: 1.4rem 1rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #ffd84d;
+}
+.about__table td {
+  padding: 1.4rem 1.6rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .about__table td {
+    padding-inline: 2.4rem;
+  }
+}
+
+.about__free {
+  margin-right: 0.8rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #e03a2f;
+}
+
+.about__note {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: #7a5a48;
+}
+
+.point {
+  background-color: #ffd84d;
+}
+
+.point__list {
+  display: grid;
+  gap: 5.6rem;
+  padding-top: 2.4rem;
+}
+@media screen and (min-width: 768px) {
+  .point__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .point__list {
+    gap: 3.2rem;
+  }
+}
+
+.point__card {
+  --card-color: #e86a00;
+  position: relative;
+  padding: 5.6rem 2.4rem 3.2rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.8rem;
+  box-shadow: 0.8rem 0.8rem 0 var(--card-color);
+}
+.point__card--blue {
+  --card-color: #1a7fd0;
+}
+.point__card--green {
+  --card-color: #169c55;
+}
+
+.point__num {
+  position: absolute;
+  top: -4.4rem;
+  left: 1.6rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--card-color);
+  -webkit-text-stroke: 0.6rem #4a2e22;
+  paint-order: stroke fill;
+}
+
+.point__icon {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+.point__card-title {
+  margin-bottom: 1.2rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.point__card-text {
+  font-size: 1.5rem;
+}
+
+.contents {
+  background-color: #fff4c7;
+}
+
+.contents__list {
+  display: grid;
+  gap: 4.8rem;
+  padding-top: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .contents__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5.6rem 3.2rem;
+  }
+}
+
+.contents__card {
+  --card-color: #e86a00;
+  position: relative;
+  padding: 2.4rem 2rem 3.2rem;
+  background-color: #ffffff;
+  border: 0.5rem dashed var(--card-color);
+  border-radius: 3.2rem;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s;
+}
+@media screen and (min-width: 1024px) {
+  .contents__card {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 5.6rem 2.8rem 3.2rem;
+  }
+}
+@media (hover: hover) {
+  .contents__card:hover {
+    transform: translateY(-1.2rem) rotate(-2deg);
+    box-shadow: 0 1.6rem 0 rgba(74, 46, 34, 0.15);
+  }
+  .contents__card:nth-child(even):hover {
+    transform: translateY(-1.2rem) rotate(2deg);
+  }
+}
+.contents__card--blue {
+  --card-color: #1a7fd0;
+}
+.contents__card--green {
+  --card-color: #169c55;
+}
+.contents__card--red {
+  --card-color: #e03a2f;
+}
+
+.contents__card-badge {
+  position: absolute;
+  top: -2.8rem;
+  left: -1.2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7.6rem;
+  height: 7.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.05;
+  color: #ffffff;
+  background-color: var(--card-color);
+  border: 0.3rem solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0.4rem 0 rgba(74, 46, 34, 0.25);
+}
+@media screen and (min-width: 1024px) {
+  .contents__card-badge {
+    width: 8.4rem;
+    height: 8.4rem;
+    font-size: 1.6rem;
+  }
+}
+
+.contents__card-badge-dot {
+  line-height: 0.6;
+}
+
+.contents__card-img {
+  width: 82%;
+  margin: 1.6rem auto 2rem;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 0.4rem solid var(--card-color);
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+}
+@media screen and (min-width: 1024px) {
+  .contents__card-img {
+    order: 2;
+    width: 100%;
+    margin: 0;
+  }
+}
+.contents__card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contents__card:nth-child(even) .contents__card-img {
+  border-radius: 45% 55% 42% 58%/55% 45% 55% 45%;
+}
+
+.contents__card-title {
+  margin-bottom: 1rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.35;
+  color: var(--card-color);
+  text-align: center;
+}
+@media screen and (min-width: 1024px) {
+  .contents__card-title {
+    text-align: left;
+  }
+}
+
+.contents__card-text {
+  font-size: 1.5rem;
+}
+
+.timetable {
+  background-color: #e6f6fd;
+}
+
+.timetable__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.timetable__tab {
+  flex: 1;
+  max-width: 24rem;
+  padding: 1rem 1.2rem 1.2rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.3;
+  color: #4a2e22;
+  background-color: #ffffff;
+  border: 0.3rem solid #4a2e22;
+  border-radius: 1.6rem;
+  box-shadow: 0 0.5rem 0 #4a2e22;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+@media screen and (min-width: 768px) {
+  .timetable__tab {
+    font-size: 2.4rem;
+  }
+}
+.timetable__tab.is-active {
+  color: #ffffff;
+  background-color: #1a7fd0;
+}
+.timetable__tab.is-active.timetable__tab--sun {
+  background-color: #e03a2f;
+}
+.timetable__tab.is-active .week {
+  box-shadow: 0 0 0 0.2rem #ffffff;
+}
+.timetable__tab.is-active {
+  transform: translateY(0.5rem);
+  box-shadow: 0 0 0 #4a2e22;
+}
+@media (hover: hover) {
+  .timetable__tab:not(.is-active):hover {
+    transform: translateY(0.2rem) rotate(-1.5deg);
+    box-shadow: 0 0.3rem 0 #4a2e22;
+  }
+}
+
+.timetable__tab-day {
+  display: block;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.16em;
+}
+
+.timetable__panels {
+  margin-top: 2.4rem;
+  padding: 0.8rem 1.6rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.4rem;
+}
+@media screen and (min-width: 768px) {
+  .timetable__panels {
+    padding: 1.6rem 3.2rem;
+  }
+}
+
+.timetable__row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.2rem;
+  padding-block: 1.4rem;
+}
+.timetable__row + .timetable__row {
+  border-top: 0.2rem dashed rgba(74, 46, 34, 0.2);
+}
+@media screen and (min-width: 768px) {
+  .timetable__row {
+    grid-template-columns: 12rem 1fr;
+    align-items: center;
+  }
+}
+
+.timetable__time {
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a7fd0;
+}
+.timetable__time small {
+  display: block;
+  font-size: 1.3rem;
+}
+@media screen and (min-width: 768px) {
+  .timetable__time {
+    font-size: 2.4rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .timetable__content {
+    display: grid;
+    grid-template-columns: 8.4rem 1fr auto;
+    align-items: center;
+    gap: 1.6rem;
+  }
+}
+
+.timetable__tag {
+  display: inline-block;
+  padding: 0.1rem 1rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 99.9rem;
+}
+.timetable__tag--red {
+  background-color: #e03a2f;
+}
+.timetable__tag--orange {
+  background-color: #e86a00;
+}
+.timetable__tag--green {
+  background-color: #169c55;
+}
+.timetable__tag--blue {
+  background-color: #1a7fd0;
+}
+.timetable__tag--gray {
+  background-color: #7a5a48;
+}
+
+.timetable__title {
+  margin-top: 0.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.timetable__place {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  color: #7a5a48;
+}
+.timetable__place::before {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50% 50% 50% 0;
+  background-color: #e03a2f;
+  transform: rotate(-45deg);
+}
+
+.timetable__note {
+  margin-top: 1.6rem;
+  font-size: 1.3rem;
+  color: #7a5a48;
+  text-align: center;
+}
+
+.map {
+  background-color: #eaf7df;
+}
+
+.map__lead {
+  margin-top: -2.4rem;
+  margin-bottom: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.map__wrap {
+  display: grid;
+  gap: 2.4rem;
+}
+@media screen and (min-width: 1024px) {
+  .map__wrap {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
+    gap: 3.2rem;
+  }
+}
+
+.map__figure {
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.4rem;
+  box-shadow: 0.8rem 0.8rem 0 #169c55;
+}
+
+.map__svg {
+  width: 100%;
+  height: auto;
+}
+
+.map__area {
+  cursor: pointer;
+  outline: none;
+}
+.map__area .map__area-shape {
+  stroke-width: 4;
+  stroke-dasharray: 10 7;
+  transition: stroke-width 0.3s, filter 0.3s;
+}
+.map__area:hover .map__area-shape, .map__area:focus-visible .map__area-shape, .map__area.is-active .map__area-shape {
+  stroke-width: 6;
+  stroke-dasharray: none;
+}
+.map__area:focus-visible .map__area-shape {
+  filter: drop-shadow(0 0 6px #1a7fd0);
+}
+
+.map__label {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  fill: #4a2e22;
+  stroke: #ffffff;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  pointer-events: none;
+}
+.map__label--small {
+  font-size: 18px;
+}
+
+.map__pin {
+  stroke: #4a2e22;
+  stroke-width: 2.5;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.map__pin--red {
+  fill: #e03a2f;
+}
+.map__pin--orange {
+  fill: #e86a00;
+}
+.map__pin--green {
+  fill: #169c55;
+}
+.map__pin--blue {
+  fill: #1a7fd0;
+}
+.map__pin--sky {
+  fill: #3cbbeb;
+}
+.map__pin--yellow {
+  fill: #ffd84d;
+}
+.map__pin--brown {
+  fill: #8c5a3c;
+}
+
+.map__side {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.map__legend-btn {
+  --btn-color: #e86a00;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background-color: #ffffff;
+  border: 0.25rem solid #4a2e22;
+  border-radius: 99.9rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, color 0.3s;
+}
+.map__legend-btn::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--btn-color);
+  border: 0.2rem solid #4a2e22;
+}
+.map__legend-btn--red {
+  --btn-color: #e03a2f;
+}
+.map__legend-btn--orange {
+  --btn-color: #e86a00;
+}
+.map__legend-btn--green {
+  --btn-color: #169c55;
+}
+.map__legend-btn--blue {
+  --btn-color: #1a7fd0;
+}
+.map__legend-btn--sky {
+  --btn-color: #3cbbeb;
+}
+.map__legend-btn--yellow {
+  --btn-color: #ffd84d;
+}
+.map__legend-btn--brown {
+  --btn-color: #8c5a3c;
+}
+@media (hover: hover) {
+  .map__legend-btn:hover {
+    transform: translateY(-0.3rem) rotate(-2deg);
+  }
+}
+.map__legend-btn.is-active {
+  color: #ffffff;
+  background-color: #4a2e22;
+}
+.map__legend-btn.is-active::before {
+  border-color: #ffffff;
+}
+
+.map__info {
+  position: relative;
+  min-height: 14rem;
+  padding: 2rem 2.2rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2rem;
+}
+.map__info.is-open .map__info-empty {
+  display: none;
+}
+
+.map__info-empty {
+  display: grid;
+  place-items: center;
+  min-height: 9rem;
+  font-weight: 700;
+  color: #7a5a48;
+  text-align: center;
+}
+
+.map__detail {
+  display: none;
+}
+.map__detail.is-active {
+  display: block;
+}
+
+.map__detail-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
+.map__detail-title::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 2.4rem;
+  border-radius: 0.6rem;
+  background-color: #169c55;
+}
+
+.access {
+  background-color: #fffdf5;
+}
+
+.access__wrap {
+  display: grid;
+  gap: 3.2rem;
+}
+@media screen and (min-width: 1024px) {
+  .access__wrap {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 5.6rem;
+  }
+}
+
+.access__map {
+  filter: drop-shadow(0.8rem 0.8rem 0 #ffd84d);
+}
+
+.access__svg {
+  width: 100%;
+  height: auto;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+.access__item {
+  display: grid;
+  gap: 0.6rem;
+  padding-block: 1.6rem;
+}
+.access__item + .access__item {
+  border-top: 0.2rem dashed rgba(74, 46, 34, 0.25);
+}
+.access__item--red .access__term {
+  background-color: #e03a2f;
+}
+.access__item--orange .access__term {
+  background-color: #e86a00;
+}
+.access__item--green .access__term {
+  background-color: #169c55;
+}
+.access__item--blue .access__term {
+  background-color: #1a7fd0;
+}
+
+.access__term {
+  width: fit-content;
+  padding: 0.2rem 1.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  border-radius: 99.9rem;
+}
+
+.access__desc {
+  font-weight: 700;
+}
+
+.price {
+  background-color: #ffd84d;
+}
+
+.price__free {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 26rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  color: #ffffff;
+  text-align: center;
+  background-color: #e03a2f;
+  border: 0.5rem solid #4a2e22;
+  border-radius: 50%;
+  box-shadow: 0 1rem 0 #4a2e22;
+}
+.price__free::before {
+  content: "";
+  position: absolute;
+  inset: 1.2rem;
+  border: 0.3rem dashed rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .price__free {
+    width: 32rem;
+  }
+}
+
+.price__free-label {
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.price__free-text {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.price__free-text span {
+  display: block;
+  font-size: 6.4rem;
+  line-height: 1.1;
+}
+@media screen and (min-width: 768px) {
+  .price__free-text span {
+    font-size: 8rem;
+  }
+}
+
+.price__free-sub {
+  margin-top: 0.6rem;
+  padding-inline: 2.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .price__free-sub {
+    font-size: 1.4rem;
+  }
+}
+
+.price__table-wrap {
+  max-width: 80rem;
+  margin: 5.6rem auto 0;
+}
+
+.price__caption {
+  margin-bottom: 1.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.price__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 1.3rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.4rem;
+}
+@media screen and (min-width: 768px) {
+  .price__table {
+    font-size: 1.6rem;
+  }
+}
+.price__table thead th {
+  padding: 1.2rem 0.8rem;
+}
+.price__table thead th:first-child {
+  border-top-left-radius: 2rem;
+}
+.price__table thead th:last-child {
+  border-top-right-radius: 2rem;
+}
+.price__table thead th {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  background-color: #4a2e22;
+}
+.price__table tbody th,
+.price__table tbody td {
+  padding: 1.4rem 0.8rem;
+  border-top: 0.2rem dashed rgba(74, 46, 34, 0.2);
+}
+@media screen and (min-width: 768px) {
+  .price__table tbody th,
+  .price__table tbody td {
+    padding: 1.6rem 2rem;
+  }
+}
+.price__table tbody tr:first-child th,
+.price__table tbody tr:first-child td {
+  border-top: 0;
+}
+.price__table tbody th {
+  font-weight: 700;
+  text-align: left;
+}
+.price__table tbody td {
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.price__zero {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 900;
+  color: #e03a2f;
+}
+
+.entry {
+  background-color: #fff0de;
+}
+
+.entry__lead {
+  max-width: 76rem;
+  margin: -1.6rem auto 4.8rem;
+  padding: 2rem 2.4rem;
+  text-align: center;
+  background-color: #ffffff;
+  border: 0.3rem dashed #e86a00;
+  border-radius: 2.4rem;
+}
+
+.entry__lead-title {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.5;
+  color: #e03a2f;
+}
+@media screen and (min-width: 768px) {
+  .entry__lead-title {
+    font-size: 2.2rem;
+  }
+}
+
+.entry__lead-text {
+  margin-top: 0.8rem;
+  font-size: 1.4rem;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .entry__lead-text {
+    text-align: center;
+  }
+}
+
+.entry__steps {
+  display: grid;
+  gap: 4rem;
+  padding-top: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .entry__steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.entry__step {
+  --step-color: #e03a2f;
+  position: relative;
+  padding: 3.6rem 2rem 2.4rem;
+  text-align: center;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 2.4rem;
+}
+.entry__step--orange {
+  --step-color: #e86a00;
+}
+.entry__step--green {
+  --step-color: #169c55;
+}
+.entry__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3.2rem;
+  width: 2.4rem;
+  height: 1.6rem;
+  background-color: #4a2e22;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+}
+@media screen and (min-width: 768px) {
+  .entry__step:not(:last-child)::after {
+    left: auto;
+    right: -3.4rem;
+    bottom: auto;
+    top: 50%;
+    width: 1.6rem;
+    height: 2.4rem;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    transform: translateY(-50%);
+  }
+}
+
+.entry__step-num {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.2rem 1.8rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  white-space: nowrap;
+  background-color: var(--step-color);
+  border: 0.3rem solid #4a2e22;
+  border-radius: 99.9rem;
+  transform: translateX(-50%);
+}
+.entry__step-num b {
+  font-size: 2.2rem;
+}
+
+.entry__step-title {
+  margin-bottom: 0.8rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.entry__step-text {
+  font-size: 1.4rem;
+}
+
+.form {
+  max-width: 76rem;
+  margin: 5.6rem auto 0;
+  padding: 3.2rem 2rem;
+  background-color: #ffffff;
+  border: 0.35rem solid #4a2e22;
+  border-radius: 3.2rem;
+  box-shadow: 1rem 1rem 0 #ffd84d;
+}
+@media screen and (min-width: 768px) {
+  .form {
+    padding: 4.8rem 5.6rem;
+  }
+}
+
+.form__item + .form__item {
+  margin-top: 2.8rem;
+}
+
+.form__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  padding: 0;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.form__required {
+  padding: 0.1rem 0.8rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background-color: #e03a2f;
+  border-radius: 0.6rem;
+}
+
+.form__hint {
+  font-size: 1.3rem;
+  color: #7a5a48;
+}
+
+.form__input,
+.form__select {
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+  background-color: #fffdf5;
+  border: 0.25rem solid #bda894;
+  border-radius: 1.2rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form__input:focus,
+.form__select:focus {
+  outline: none;
+  border-color: #1a7fd0;
+  box-shadow: 0 0 0 0.4rem rgba(26, 127, 208, 0.2);
+}
+.form__input.is-error,
+.form__select.is-error {
+  border-color: #e03a2f;
+  background-color: #fff3f1;
+}
+
+.form__select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.form__select-wrap {
+  position: relative;
+  max-width: 24rem;
+}
+.form__select-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-right: 0.3rem solid #4a2e22;
+  border-bottom: 0.3rem solid #4a2e22;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.form__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.form__choices.is-error .form__choice {
+  border-color: #e03a2f;
+}
+
+.form__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.6rem;
+  font-weight: 700;
+  background-color: #fffdf5;
+  border: 0.25rem solid #bda894;
+  border-radius: 99.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.form__choice input {
+  width: 1.8rem;
+  height: 1.8rem;
+  accent-color: #e03a2f;
+}
+.form__choice:has(input:checked) {
+  background-color: #fff4c7;
+  border-color: #4a2e22;
+  transform: scale(1.03);
+}
+.form__choice:has(input:focus-visible) {
+  outline: 0.3rem solid #1a7fd0;
+  outline-offset: 0.2rem;
+}
+
+.form__choices--column {
+  flex-direction: column;
+}
+
+.form__choice--card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.2rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 1.6rem;
+}
+.form__choice--card input {
+  grid-row: span 2;
+}
+@media screen and (min-width: 768px) {
+  .form__choice--card {
+    grid-template-columns: auto 1fr auto;
+  }
+  .form__choice--card input {
+    grid-row: auto;
+  }
+}
+.form__choice--card:has(input:checked) {
+  transform: none;
+}
+
+.form__choice-name {
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.form__choice-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.4rem;
+  color: #7a5a48;
+}
+.form__choice-meta b {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #e03a2f;
+}
+
+.form__fixed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.2rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+.form__fixed .week {
+  margin-left: -0.8rem;
+}
+
+.form__fixed-note,
+.form__note {
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #7a5a48;
+}
+
+.form__note {
+  margin-top: 0.6rem;
+}
+
+.form__total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem 1.2rem;
+  margin-top: 3.2rem;
+  padding: 1.6rem;
+  background-color: #fff4c7;
+  border-radius: 1.6rem;
+}
+
+.form__total-label {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 800;
+}
+
+.form__total-price {
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #e03a2f;
+}
+.form__total-price span {
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 3.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.form__total-note {
+  width: 100%;
+  font-size: 1.3rem;
+  color: #7a5a48;
+  text-align: center;
+}
+
+.form__error {
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e03a2f;
+}
+.form__error:empty {
+  display: none;
+}
+.form__error::before {
+  content: "！ ";
+}
+
+.entry__btn {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.entry__result {
+  display: none;
+  margin-top: 2.4rem;
+  padding: 1.4rem 1.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 800;
+  color: #0e7a41;
+  text-align: center;
+  background-color: #e5f7ec;
+  border: 0.25rem solid #169c55;
+  border-radius: 1.6rem;
+}
+.entry__result.is-show {
+  display: block;
+}
+
+.entry__result-title {
+  font-size: 1.6rem;
+}
+
+.entry__summary {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4a2e22;
+  text-align: left;
+  border-top: 0.2rem dashed rgba(22, 156, 85, 0.5);
+}
+.entry__summary div {
+  display: grid;
+  grid-template-columns: 10.4rem 1fr;
+  gap: 1rem;
+}
+.entry__summary dt {
+  color: #0e7a41;
+}
+
+.faq {
+  background-color: #fffdf5;
+}
+
+.faq__list {
+  max-width: 84rem;
+  margin-inline: auto;
+}
+
+.faq__item {
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 0.3rem solid #4a2e22;
+  border-radius: 2rem;
+  box-shadow: 0 0.5rem 0 #4a2e22;
+}
+.faq__item + .faq__item {
+  margin-top: 1.8rem;
+}
+
+.faq__head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 1.6rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .faq__head {
+    padding: 2rem 2.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+.faq__q,
+.faq__a {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.faq__q {
+  background-color: #e03a2f;
+}
+
+.faq__a {
+  background-color: #1a7fd0;
+}
+
+.faq__question {
+  flex: 1;
+}
+
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: #ffd84d;
+  border: 0.25rem solid #4a2e22;
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s;
+}
+.faq__icon::before, .faq__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.2rem;
+  height: 0.3rem;
+  border-radius: 0.2rem;
+  background-color: #4a2e22;
+  transform: translate(-50%, -50%);
+}
+.faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq__item.is-open .faq__icon {
+  background-color: #3cbbeb;
+  transform: rotate(225deg);
+}
+
+.faq__body {
+  display: none;
+}
+
+.faq__answer {
+  display: flex;
+  gap: 1.2rem;
+  margin: 0 1.6rem;
+  padding: 1.6rem 0 2rem;
+  border-top: 0.2rem dashed rgba(74, 46, 34, 0.25);
+}
+@media screen and (min-width: 768px) {
+  .faq__answer {
+    margin: 0 2.4rem;
+  }
+}
+
+.footer {
+  position: relative;
+  padding: 0 0 9.6rem;
+}
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-bottom: 3.2rem;
+  }
+}
+.footer {
+  background-color: #3cbbeb;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 0.1rem);
+  height: 2.4rem;
+  background-color: inherit;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E") repeat-x left bottom/12rem 2.4rem;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'%3E%3Cpath d='M0 24V12Q15 0 30 12T60 12T90 12T120 12V24Z'/%3E%3C/svg%3E") repeat-x left bottom/12rem 2.4rem;
+}
+
+.footer__garland {
+  z-index: 2;
+  margin-bottom: 2rem;
+}
+
+.footer__inner {
+  text-align: center;
+}
+
+.footer__logo {
+  display: inline-block;
+  padding: 0.8rem 2.4rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  background-color: #ffffff;
+  border: 0.3rem solid #4a2e22;
+  border-radius: 99.9rem;
+}
+@media screen and (min-width: 768px) {
+  .footer__logo {
+    font-size: 2.4rem;
+  }
+}
+
+.footer__info {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .footer__info {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.footer__info-row {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  justify-items: center;
+}
+@media screen and (min-width: 768px) {
+  .footer__info-row {
+    justify-items: start;
+    text-align: left;
+  }
+}
+.footer__info-row dt {
+  padding: 0 1.2rem;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  background-color: #ffd84d;
+  border-radius: 99.9rem;
+}
+
+.footer__note {
+  max-width: 72rem;
+  margin: 2.8rem auto 0;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 1.2rem;
+}
+
+.footer__copy {
+  margin-top: 2.4rem;
+  font-family: "Fredoka", "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.2rem;
+}
+
+.fv__title-char {
+  animation: charBounce 1s cubic-bezier(0.28, 0.84, 0.42, 1) backwards;
+  animation-delay: calc(0.3s + var(--i) * 0.07s);
+}
+.fv__title-char.is-landed {
+  animation: none;
+}
+.fv__title-char.is-landed.is-jump {
+  animation: charJump 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes charBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-120%) scale(0.6) rotate(-12deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(8%) scale(1.15, 0.85) rotate(0);
+  }
+  65% {
+    transform: translateY(-18%) scale(0.95, 1.05);
+  }
+  82% {
+    transform: translateY(3%) scale(1.03, 0.97);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes charJump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-25%) rotate(-8deg);
+  }
+  70% {
+    transform: translateY(4%) rotate(4deg);
+  }
+}
+.fv__catch,
+.fv__date,
+.fv__time,
+.fv__place,
+.fv__btns {
+  animation: popUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.fv__catch {
+  animation-delay: 1.3s;
+}
+
+.fv__date {
+  animation-delay: 1.45s;
+}
+
+.fv__time,
+.fv__place {
+  animation-delay: 1.55s;
+}
+
+.fv__btns {
+  animation-delay: 1.7s;
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: translateY(2.4rem) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.fv__badge {
+  animation: badgeIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s backwards, badgeWiggle 3s ease-in-out 2.8s infinite;
+}
+
+@keyframes badgeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-270deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+@keyframes badgeWiggle {
+  0%, 60%, 100% {
+    transform: rotate(0) scale(1);
+  }
+  68% {
+    transform: rotate(-10deg) scale(1.08);
+  }
+  76% {
+    transform: rotate(8deg) scale(1.08);
+  }
+  84% {
+    transform: rotate(-5deg) scale(1.04);
+  }
+  92% {
+    transform: rotate(3deg) scale(1);
+  }
+}
+.fv__cloud {
+  animation: blobMorph 12s ease-in-out infinite alternate;
+}
+
+@keyframes blobMorph {
+  0% {
+    border-radius: 46% 54% 42% 58%/38% 44% 56% 62%;
+  }
+  50% {
+    border-radius: 54% 46% 58% 42%/44% 38% 62% 56%;
+  }
+  100% {
+    border-radius: 42% 58% 48% 52%/52% 40% 60% 48%;
+  }
+}
+.garland__flag {
+  animation: swing 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-9deg);
+  }
+  100% {
+    transform: rotate(9deg);
+  }
+}
+.fv__motif {
+  animation: floatY 5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.fv__motif--balloon2 {
+  animation-duration: 6s;
+  animation-delay: -2s;
+}
+.fv__motif--balloon3 {
+  animation-duration: 4.4s;
+  animation-delay: -1s;
+}
+.fv__motif--balloon4 {
+  animation-duration: 5.6s;
+  animation-delay: -3s;
+}
+.fv__motif--tree1, .fv__motif--tree2 {
+  transform-origin: 50% 100%;
+  animation-name: sway;
+  animation-duration: 3.6s;
+}
+.fv__motif--tree2 {
+  animation-delay: -1.8s;
+}
+.fv__motif--house1, .fv__motif--house2 {
+  animation-name: bob;
+  animation-duration: 3s;
+}
+.fv__motif--house2 {
+  animation-delay: -1.5s;
+}
+.fv__motif--bicycle {
+  animation-name: ride;
+  animation-duration: 4s;
+}
+.fv__motif--star1, .fv__motif--star2 {
+  animation-name: twinkle;
+  animation-duration: 2.4s;
+}
+.fv__motif--star2 {
+  animation-delay: -1.2s;
+}
+.fv__motif--food {
+  animation-name: bob;
+  animation-duration: 2.6s;
+}
+
+@keyframes floatY {
+  0% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  100% {
+    transform: translateY(-2rem) rotate(4deg);
+  }
+}
+@keyframes sway {
+  0% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-0.8rem);
+  }
+}
+@keyframes ride {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+  50% {
+    transform: translateX(1.6rem) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(3.2rem) rotate(0);
+  }
+}
+@keyframes twinkle {
+  0% {
+    transform: scale(0.8) rotate(0);
+  }
+  100% {
+    transform: scale(1.15) rotate(40deg);
+  }
+}
+@keyframes balloonRise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-6deg);
+  }
+  12% {
+    opacity: 0.75;
+  }
+  25% {
+    transform: translate(2.4rem, -18rem) rotate(6deg);
+  }
+  50% {
+    transform: translate(-1.6rem, -36rem) rotate(-5deg);
+  }
+  75% {
+    transform: translate(2rem, -54rem) rotate(5deg);
+  }
+  88% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -72rem) rotate(-6deg);
+  }
+}
+.fv__rays {
+  animation: raysRotate 90s linear infinite;
+}
+
+@keyframes raysRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.fv__scroll::after {
+  animation: arrowBounce 1.4s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(0.6rem) rotate(45deg);
+  }
+}
+.header__drawer-balloon {
+  animation: floatY 3s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.header__drawer-balloon:nth-child(2) {
+  animation-delay: -1s;
+}
+.header__drawer-balloon:nth-child(3) {
+  animation-delay: -2s;
+}
+
+.js-fadeUp {
+  opacity: 0;
+}
+.js-fadeUp.is-show {
+  opacity: 1;
+  animation: bounceUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+@keyframes bounceUp {
+  0% {
+    opacity: 0;
+    transform: translateY(4.8rem) scale(0.94);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-0.8rem) scale(1.02);
+  }
+  78% {
+    transform: translateY(0.3rem) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+.js-rotateIn.is-show {
+  animation: spinPop 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+@keyframes spinPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-200deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+.sec__title.is-show .sec__char {
+  animation: charPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation-delay: calc(0.15s + var(--i, 0) * 0.05s);
+}
+
+@keyframes charPop {
+  0% {
+    opacity: 0;
+    transform: translateY(1.2em) scale(0.4) rotate(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+.point__card.is-show .point__num {
+  animation: numSpin 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s backwards;
+}
+
+@keyframes numSpin {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+.contents__card.is-show .contents__card-badge {
+  animation: jelly 0.9s ease 0.4s backwards;
+}
+
+@keyframes jelly {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.25, 0.8);
+  }
+  60% {
+    transform: scale(0.88, 1.12);
+  }
+  80% {
+    transform: scale(1.06, 0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.price__free.is-show {
+  animation: spinPop 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards, gentleTilt 4s ease-in-out 1.2s infinite alternate;
+}
+
+@keyframes gentleTilt {
+  0% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(4deg);
+  }
+}
+.timetable__panels.is-show .timetable__row {
+  animation: rowSlide 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+.timetable__panels.is-show .timetable__row:nth-child(1) {
+  animation-delay: 0.06s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(6) {
+  animation-delay: 0.36s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(7) {
+  animation-delay: 0.42s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(8) {
+  animation-delay: 0.48s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(9) {
+  animation-delay: 0.54s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(10) {
+  animation-delay: 0.6s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(11) {
+  animation-delay: 0.66s;
+}
+.timetable__panels.is-show .timetable__row:nth-child(12) {
+  animation-delay: 0.72s;
+}
+
+@keyframes rowSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-4rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.map__pin {
+  animation: pinIdle 2.4s ease-in-out infinite;
+}
+
+.map__area:nth-of-type(2n) .map__pin {
+  animation-delay: -1.2s;
+}
+
+.map__area.is-active .map__pin {
+  animation: pinJump 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes pinIdle {
+  0%, 100% {
+    transform: translateY(0) scale(0.85);
+  }
+  50% {
+    transform: translateY(-4%) scale(0.85);
+  }
+}
+@keyframes pinJump {
+  0% {
+    transform: translateY(0) scale(0.85);
+  }
+  30% {
+    transform: translateY(-45%) scale(1.1, 1.2);
+  }
+  55% {
+    transform: translateY(0) scale(1.35, 0.8);
+  }
+  75% {
+    transform: translateY(-12%) scale(1.1, 1.2);
+  }
+  100% {
+    transform: translateY(0) scale(1.2);
+  }
+}
+.map__detail.is-active {
+  animation: infoOpen 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes infoOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(1.2rem) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.entry__result.is-show {
+  animation: jelly 0.8s ease;
+}
+
+.pagetop.is-show .pagetop__balloon {
+  animation: floatY 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fv__rays,
+  .fv__cloud,
+  .fv__motif,
+  .garland__flag,
+  .fv__scroll::after,
+  .header__drawer-balloon,
+  .map__pin,
+  .pagetop.is-show .pagetop__balloon,
+  .bg-balloons__item {
+    animation: none !important;
+  }
+  .bg-balloons__item {
+    opacity: 0.45;
+  }
+  .fv__title-char,
+  .fv__catch,
+  .fv__date,
+  .fv__time,
+  .fv__place,
+  .fv__btns,
+  .fv__badge,
+  .js-fadeUp.is-show,
+  .js-rotateIn.is-show,
+  .price__free.is-show,
+  .sec__title.is-show .sec__char,
+  .point__card.is-show .point__num,
+  .contents__card.is-show .contents__card-badge,
+  .timetable__panels.is-show .timetable__row,
+  .map__detail.is-active,
+  .entry__result.is-show {
+    animation: softFade 0.4s ease backwards !important;
+  }
+  .map__area.is-active .map__pin {
+    animation: none !important;
+    transform: scale(1.2);
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+@keyframes softFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
